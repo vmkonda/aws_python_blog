@@ -1,5 +1,5 @@
 # Investment Analytics 
-Development of investment analytics involves gathering, browsing through and cleaning a large amount of data on portfolio positions, prices, product reference, cashflow and risk metrics. This data is then joined, aggregated and transformed in multiple combinations and sequential orders to develop the final analytics. The fastest way to develop such analytics is to use sql for linear calculations and python for nonlinear calculations while maintaining a holistic view of all the data and analytics we are developing. [DBT](https://www.getdbt.com/) and [SQLMesh](https://sqlmesh.com/) are two great tools to build such data products fast.
+Development of investment analytics involves gathering, browsing through and cleaning a large amount of data on portfolio positions, prices, product reference, cashflow and risk metrics. This data is then joined, aggregated and transformed in multiple combinations and sequential orders to develop the final analytics. The fastest way to develop such analytics is to use sql for linear calculations and python for nonlinear calculations while maintaining a holistic view of all the data and analytics we are developing. [DBT](https://www.getdbt.com/) and [SQLMesh](https://sqlmesh.com/) are two great tools to build data products fast in a holistic way.
 
 ## Challenge
 
