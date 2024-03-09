@@ -7,7 +7,7 @@ Development of investment analytics involves gathering, browsing through and cle
 
 Any such analytics development needs the following components:
 1. A data warehouse to store the data
-2. A platform to compute analytics using either SQL or python on the data stored in the warehouse
+2. A platform to compute analytics systematically or in an adhoc fashion using either SQL or python on the data stored in the warehouse
 3. A development environment to code in python or SQL. It should be easy to develop or deploy new analytics and debug any issue with the existing analytics.
 4. An *orchestrator* that runs and coordinates the different parts of building the analytics such as 
     * data ingestion
