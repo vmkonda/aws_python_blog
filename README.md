@@ -1,6 +1,9 @@
+# Investment Analytics 
+Development of investment analytics involves gathering, browsing through and cleaning a large amount of data on portfolio positions, cashflow and risk metrics. This data is then joined, aggregated and transformed in multiple combinations and sequential orders to develop the final analytics. The fastest way to develop such analytics is to use python and sql based tools such as [DBT](https://www.getdbt.com/) and [SQLMesh](https://sqlmesh.com/).  
+
 # Data and Analytics development on AWS
 
-Any analytics development that involves a large amount of data needs the following components:
+Any such analytics development needs the following components:
 1. A data warehouse to store the data
 2. A platform to compute analytics using either SQL or python on the data stored in the warehouse
 3. A development environment to code in python or SQL. It should be easy to develop or deploy new analytics and debug any issue with the existing analytics.
