@@ -22,7 +22,7 @@ Here is one flexible framework for development on AWS. It uses the following ser
 The container then runs the python code. The location of the code, venv in S3 and the command to run are passed as environment variables to the container. The container is registered in ECR and is used for CI/CD workflows as well.
 3. An S3 bucket to host all the python modules developed in the process of developing the analytics.
 4. A framework to organize SQL models such as dbt or SQLMesh
-5. **CodeCatalyst** or **GitHub** to house all the python and dbt/SQL mesh code used to build analytics, serverless framework code ( or other IAC ) to define containers, lambda functions, ECS tasks, step functions, etc. It also has the necessary workflows to build python virtual environments, copy code or virtual environments to S3, define or update Fargate tasks, Lambdas, Step functions, Docker containers, etc., upon pushing the code to the main branch. 
+5. **CodeCatalyst** or **GitHub** to house all the python and dbt/SQLMesh code used to build analytics, serverless framework code ( or other IAC ) to define containers, lambda functions, ECS tasks, step functions, etc. It also has the necessary workflows to build python virtual environments, copy code or virtual environments to S3, define or update Fargate tasks, Lambdas, Step functions, Docker containers, etc., upon pushing the code to the main branch. 
 6. Finally, we can use any IDE such as VSCode to develop the SQL or python models.
 7. A data warehouse such as snowflake or redshift on AWS
 
