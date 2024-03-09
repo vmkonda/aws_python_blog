@@ -1,7 +1,9 @@
 # Investment Analytics 
 Development of investment analytics involves gathering, browsing through and cleaning a large amount of data on portfolio positions, cashflow and risk metrics. This data is then joined, aggregated and transformed in multiple combinations and sequential orders to develop the final analytics. The fastest way to develop such analytics is to use python and sql based tools such as [DBT](https://www.getdbt.com/) and [SQLMesh](https://sqlmesh.com/).  
 
-# Data and Analytics development on AWS
+
+
+# Challenge
 
 Any such analytics development needs the following components:
 1. A data warehouse to store the data
@@ -12,7 +14,7 @@ Any such analytics development needs the following components:
     * python calculations 
     * SQL calculations   
 
-# Challenge
+# Framework for Data and Analytics development on AWS
 
 Here is one flexible framework for development on AWS. It uses the following services:
 1. **AWS Step Functions + Fargate + Lambda** to orchestrate the different components of the buidling of analytics
@@ -26,8 +28,7 @@ The container then runs the python code. The location of the code, venv in S3 an
 6. Finally, we can use any IDE such as VSCode to develop the SQL or python models.
 7. A data warehouse such as snowflake or redshift on AWS
 
-## Framework
 
-## Architecture
+# Architecture
 
 ![Architecture](./Arch.drawio.png)
