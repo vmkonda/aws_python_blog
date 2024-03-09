@@ -6,7 +6,7 @@ Development of investment analytics involves gathering, browsing through and cle
 ## Challenge
 
 Any such analytics development needs the following components:
-1. A data warehouse to store the data
+1. A platform for data storage
 2. A platform to compute analytics systematically or in an adhoc fashion using either SQL or python on the data stored in the warehouse
 3. A development environment to code in python or SQL. It should be easy to develop or deploy new analytics and debug any issue with the existing analytics.
 4. An *orchestrator* that runs and coordinates the different parts of building the analytics such as 
@@ -17,8 +17,10 @@ Any such analytics development needs the following components:
 # Framework for Data and Analytics development on AWS
 
 Here is one flexible framework for development on AWS. It uses the following services:
-1. **AWS Step Functions + Fargate + Lambda** to orchestrate the different components of the buidling of analytics
-2. A slim python container for Fargate that downloads the following from S3 after launching:
+1. **Redshift or Snowflake** as a lakehouse for data storage and SQL compute. 
+2. **AWS Step Functions** to orchestrate the different components of the buidling of analytics.
+3. **Fargate + Lambda** as the platform for compute.
+3. A slim python container for Fargate that downloads the following from S3 after launching:
     * python code that needs to be run
     * python virtual environment (venv) with all the dependencies needed to run the python code
 The container then runs the python code. The location of the code, venv in S3 and the command to run are passed as environment variables to the container. The container is registered in ECR and is used for CI/CD workflows as well.
