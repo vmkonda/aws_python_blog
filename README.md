@@ -3,7 +3,7 @@ Development of investment analytics involves gathering, browsing through and cle
 
 
 
-# Challenge
+## Challenge
 
 Any such analytics development needs the following components:
 1. A data warehouse to store the data
@@ -29,6 +29,6 @@ The container then runs the python code. The location of the code, venv in S3 an
 7. A data warehouse such as snowflake or redshift on AWS
 
 
-# Architecture
+## Architecture
 
 ![Architecture](./Arch.drawio.png)
