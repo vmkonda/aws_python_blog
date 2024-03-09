@@ -12,7 +12,7 @@ Any such analytics development needs the following components:
     * python calculations 
     * SQL calculations   
 
-## Framework
+# Challenge
 
 Here is one flexible framework for development on AWS. It uses the following services:
 1. **AWS Step Functions + Fargate + Lambda** to orchestrate the different components of the buidling of analytics
@@ -25,6 +25,8 @@ The container then runs the python code. The location of the code, venv in S3 an
 5. **CodeCatalyst** or **GitHub** to house all the python and dbt/SQLMesh code used to build analytics, serverless framework code ( or other IAC ) to define containers, lambda functions, ECS tasks, step functions, etc. It also has the necessary workflows to build python virtual environments, copy code or virtual environments to S3, define or update Fargate tasks, Lambdas, Step functions, Docker containers, etc., upon pushing the code to the main branch. 
 6. Finally, we can use any IDE such as VSCode to develop the SQL or python models.
 7. A data warehouse such as snowflake or redshift on AWS
+
+## Framework
 
 ## Architecture
 
