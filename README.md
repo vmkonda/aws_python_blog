@@ -32,6 +32,7 @@ We will use VSCode as the development environment with the following extensions:
    1. Repositories
    2. CodeSpaces
    3. Actions
+
 We will use CI/CD pipelines to automatically build the compressed tar.gz files for the virtual environment and the python code, and copy to S3. The CI/CD pipeline for the serverless framework project will create or update lambda and fargate task definitions as we commit changes to the code. This ensures that any changes to the python code or the serverless framework code will be automatically reflected in the automatic jobs. It will be convenient to implement the pipelines if the github repositories are linked in AWS CodeCatalyst and are implemented as CodeCatalyst workflows.
 
 ## Architecture
