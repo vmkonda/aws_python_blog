@@ -3,31 +3,36 @@ Development of investment analytics involves gathering, browsing through and cle
 
 ## Challenge
 
-Any such analytics development needs the following components:
-1. A platform for data storage
-2. A platform to compute analytics systematically or in an adhoc fashion using either SQL or python on the data stored in the warehouse
-3. A development environment to code in python or SQL. It should be easy to develop or deploy new analytics and debug any issue with the existing analytics.
-4. An *orchestrator* that runs and coordinates the different parts of building the analytics such as 
-    * data ingestion
-    * python calculations 
-    * SQL calculations   
+Buildig of any such analytics needs the following components in addition to tools such as DBT and SQLMesh.
+1. A platform for data storage.
+2. A platform for setting up automatic jobs for building analytics.
+3. A development environment for python, DBT and SQLMesh with CI/CD pipelines to update the code that is used in the automatic jobs.
 
+The challenge is to setup a minimum viable suite of components described above on AWS as soon as possible.
 # Framework for Data and Analytics development on AWS
 
-Here is one flexible framework for development on AWS. It uses the following services:
-1. **Redshift or Snowflake** as a lakehouse for data storage and SQL compute. 
-2. **AWS Step Functions** to orchestrate the different components of the buidling of analytics.
-3. **Fargate + Lambda** as the platform for compute.
-3. A slim python container for Fargate that downloads the following from S3 after launching:
-    * python code that needs to be run
-    * python virtual environment (venv) with all the dependencies needed to run the python code
-The container then runs the python code. The location of the code, venv in S3 and the command to run are passed as environment variables to the container. The container is registered in ECR and is used for CI/CD workflows as well.
-3. An S3 bucket to host all the python modules developed in the process of developing the analytics.
-4. A framework to organize SQL models such as dbt or SQLMesh
-5. **CodeCatalyst** or **GitHub** to house all the python and dbt/SQLMesh code used to build analytics, serverless framework code ( or other IAC ) to define containers, lambda functions, ECS tasks, step functions, etc. It also has the necessary workflows to build python virtual environments, copy code or virtual environments to S3, define or update Fargate tasks, Lambdas, Step functions, Docker containers, etc., upon pushing the code to the main branch. 
-6. Finally, we can use any IDE such as VSCode to develop the SQL or python models.
-7. A data warehouse such as snowflake or redshift on AWS
-
+Here is one minimum viable setup with all the components described in the previous section. It uses the following services.
+## Data Storage
+**Redshift** with both native tables and **S3** data imported into redshift as external tables. 
+## Automatic Jobs 
+We can use **AWS StepFunctions** to orchestrate AWS Lambdas and ECS Fargate tasks. We plan to use these services to build complex DAG workflows either triggered periodically or in response to events such as loading excel files to S3 or a button press. To make it easy to setup the automatic jobs, we will use serverless framework which helps us to setup AWS infrastructure using code. We will start with an initial project that can deploy the following on AWS:
+   1. A slim container with python and AWS CLI in which all the AWS lambda and Fargate tasks will be run.
+   2. Fargate task definitions
+   3. Lambda function definitions
+   4. StepFunctions that will define the workflow and the order of execution of Fargate task and Lambdas.
+### Slim Containers
+To run python code in a container, the container needs to have all the necessary python modules and the python code. One way to ensure this is to build a different container for each task. The disadvantage of this approach is that the number of containers can explode and the containers can become quite bloated. To avoid this, we use a slim container with only python and AWS CLI. 
+For each task, we will prepackage a virtual environment with all the necessary python modules and the associated python code as compressed tar.gz files in an S3 bucket. The paths to the virtual environment and the python code are passed as environment variables to the container.
+## Development Environment
+We will use VSCode as the development environment with the following extensions:
+1. AWS toolkit
+2. dbt Power User
+3. VSCode-dbt
+4. Github
+   1. Repositories
+   2. CodeSpaces
+   3. Actions
+We will use CI/CD pipelines to automatically build the compressed tar.gz files for the virtual environment and the python code, and copy to S3. The CI/CD pipeline for the serverless framework project will create or update lambda and fargate task definitions as we commit changes to the code. This ensures that any changes to the python code or the serverless framework code will be automatically reflected in the automatic jobs. It will be convenient to implement the pipelines if the github repositories are linked in AWS CodeCatalyst and are implemented as CodeCatalyst workflows.
 
 ## Architecture
 
